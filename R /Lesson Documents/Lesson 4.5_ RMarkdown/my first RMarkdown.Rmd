@@ -1,0 +1,43 @@
+---
+title: "My First Markdown"
+author: "Mikey Toledano"
+date: "7/03/2023"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+
+```
+
+## Testing Out RMarkdown
+
+### Reading in Data
+
+```{r read in}
+
+bm <- read_csv("data_to_summarize/body_measures.csv")
+
+```
+
+The body measures dataset has 507 observations and 26 variables.
+
+### Analysis of Data
+
+```{r summarise}
+
+median_ankle_dia <- bm %>%
+    summarize(median_ank_dia = median(ankle_diameter),
+              avg_shoulder_girth = mean(shoulder_girth))
+
+```
+
+The median ankle diameter and the average shoulder girth are `r median_ankle_dia$median_ank_dia` and `r round(median_ankle_dia$avg_shoulder_girth, 2)`. 
+
+### Text Control
+
+You can **bold** text, *italicize* text, and [links](https://en.wikipedia.org/wiki/Pizza)

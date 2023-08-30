@@ -1,0 +1,21 @@
+id_number,gender,eth,race,marital,edu_yrs,age
+1,0,Hisp,Unknown,divorced,14,23
+2,0,N-Hispanic,Unknown,Divorce,10,26
+3,0,hisp,White,single,12,54
+4,0,Hispanic,Unknown,marred,14,39
+5,0,hisp,Unknown,marred,10,33
+6,0,hisp,not known,marred,20,30
+7,0,hisp,black,divorced,13,56
+8,0,hisp,white,Single,16,43
+9,0,hisp,WHITE,Separated,12,52
+10,0,N-Hispanic,WHITE,DEFINITELY SINGLE,12,54
+11,0,Hisp,black,Maried,12,47
+12,1,Hisp,not known,single,16,33
+13,0,hisp,BLACK,DEFINITELY SINGLE,12,49
+14,0,Hispanic,White,Maried,14,54
+15,1,hispanic,wh,DEFINITELY SINGLE,14,24
+16,1,hisp,black,marred,11,42
+17,1,Hisp,wh,Maried,16,32
+18,0,N-Hispanic,Black,Separated,20,37
+19,0,Hispanic,unk,divorced,16,42
+20,0,Hispanic,black,Single,14,47

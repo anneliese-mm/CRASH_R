@@ -1,0 +1,155 @@
+---
+title: "Practice 7"
+author: "CRASH"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+```
+
+
+## Question 1
+
+Researchers are interested in the relationship of demographic factors and alcohol consumption on cirrhosis death rates. You have been given a dataset containing population, drinking data, and cirrhosis death rates for 46 US states in the `data/wine_data.txt` file. The variables of interest are:
+
+- `urban_pop` the percentage of urban population in the state
+
+- `late_births` a measure of the number of births to women between 45 to 49
+
+- `wine_consumption` the consumption of wine per capita
+
+- `liquor_consumption` the consumption of hard liquor per capita
+
+- `cirrhosis_death` the death rate from cirrhosis (outcome)
+
+### a)
+
+Read the data into your environment using the `read_table2()` function. Take a look at the original data file and describe it's format. Explain why we needed to use the `read_table2()` function -- you can take a look at the help file for `read_table2()` for help.
+
+
+```{r}
+
+
+```
+
+### b)
+
+Create scatterplots that display the relationship between each continuous variable (`urban_pop`, `late_births`, `wine_consumption`, and `liquor_consumption`) with the dependent variable of interest `cirrhosis_death`.
+
+Make sure to add a proper title to each graph, and descriptive titles to the x and y axes (not just the variable names).
+
+Based on these scatterplots, which continuous independent variables have a linear relationship with `cirrhosis_death`? Please answer in a sentence.
+
+
+```{r}
+
+
+
+```
+
+
+### c)
+
+Fit a series of simple regressions with `cirrhosis_death` as an outcome and each continuous variable as a sole predictor. Report each model's parameter estimates using the `gtsummary` package. You do not need to provide interpretations for these estimates.
+
+Which continuous variables were significantly associated with `cirrhosis_death`?
+
+
+```{r}
+
+
+```
+
+### d)
+
+Fit a linear regression model that includes all of the continuous variables from parts (b) and (c). Report the model's parameter estimates using the `gtsummary` package. Clean up the labels in your table so each characteristic is not just the raw variable name.
+
+Are any continuous variables significantly associated with `cirrhosis_death` in this fully adjusted model?
+
+If there are any continuous variables significantly associated with `cirrhosis_death`, give an interpretation of each significant parameter estimate using the words of the problem. 
+
+
+```{r}
+
+
+
+```
+
+
+## Question 2
+
+You have been given a small data file of the average weight (in pounds) for two strains of guinea pig from a series of years in the early 20th century. This data is stored in `data/gpig_dat.csv` and has a variable for year and a variable for each strain. The value in each cell of the strain variable is the weight for that strain in that year.
+
+### a)
+
+Graph guinea pig weights by year in a line plot (using both line and point geoms).
+
+For your graph:
+(1) Each strain should be a different color and a different line type. For the color, don't use default R choices, but choose your own custom colors.
+(2) The background of your plot should be white, not the default gray.
+(3) Your graph should have a title, and the x and y axes should also have titles (not just the variable names).
+(4) The legend should have a title and should be at the top of your graph.
+
+
+```{r}
+
+
+
+```
+
+### b)
+
+Use a two-sample t-test to test the hypothesis that mean guinea pig weights are equal, at a two-sided level of significance of 5%. Use `tidy()` and `kable()` functions to provide the summary results of your t-test and also report the test statistic, degrees of freedom, and p-value in a sentence that explains whether you reject or do not reject the null hypothesis.
+
+```{r}
+
+
+```
+
+### c) 
+
+********DIDN'T COVER THIS IN COURSE********
+
+Use a permutation test to test whether the minimum weight of guinea pigs are equal between strains, at a two-sided level of significance of 5%. Your permutation test should simulate at least 2000 test statistics.*
+
+In your solution, be sure to (1) provide a histogram of simulated test statistics with your observed statistic clearly marked, and (2) include a final interpretation sentence that reports your test p-value and decision to reject or not reject the null hypothesis.
+
+```{r}
+
+
+
+
+```
+
+
+## Question 3
+
+You have been given six datasets with repeated measures of MIRECC GAF Social Functioning scores for an observational study of individuals with schizophrenia. Each dataset includes a GAF SF measurement at a different follow-up visit. These files are stored in the `data/gaf_files` folder.
+
+### a)
+
+Combine all six datasets using a method that will remove any individuals who are not present in ALL datasets.
+
+
+```{r}
+
+
+
+
+```
+
+### b)
+
+Reproduce the graph shown in the `gaf_plot.png` file as closely as you can. You can see this file by clicking on it in your file explorer. Notice that the graph is faceted by site and has the mean values and their confidence interval overlaid on each plot in red. 
+
+```{r}
+
+
+
+```
+

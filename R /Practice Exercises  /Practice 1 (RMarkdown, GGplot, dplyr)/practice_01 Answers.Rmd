@@ -1,0 +1,176 @@
+---
+title: ""
+author: ""
+date: ""
+output: 
+    html_document:
+        toc: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE) # no need to change these options
+library(tidyverse)
+library(readxl)
+```
+
+## Question 0
+
+##### a) 
+
+Add your name and the date to the header of the rmd.  
+
+##### b) 
+
+Add a floating table of contents to the HTML document. Check out the YAML header from previous files for an example of how to do this.
+
+## Question 1 
+
+The US Measles dataset contains yearly reports of measles prevalences in the US. The variables are: year, state, and prevalence.
+
+##### a) 
+
+Read in the US Measles dataset (`us_measles.csv`). 
+
+```{r load}
+
+
+```
+
+##### b) 
+
+Create a histogram of measles prevalence and comment on the shape of the distribution. 
+
+```{r histogram prevalence}
+
+
+```
+
+
+##### c) 
+
+Calculate the mean and standard deviation of measles prevalence for years 1940 and 1990. Interpret these values in context. 
+
+```{r forties2nineties}
+
+```
+
+
+##### d)
+
+Create a scatterplot for measles prevalence by year in New York, and set all the points to the color of your choice (black isn't allowed). Report in a sentence one pattern you notice with measles prevalence over time in New York.
+
+```{r nyplot}
+
+
+```
+
+
+##### e)
+
+Create a scatterplot for measles prevalence by year in another state of your choice (let us know in writing which state you chose), and set the points to the color of your choice (black isn't allowed). How does this graph compare to the graph of New York's prevalence by year?
+
+```{r maineplot}
+
+
+```
+
+
+## Question 2 
+
+The Tooth Growth dataset contains the results of an experiment conducted on 60 Guinea Pigs to evaluate the effect of vitamin C supplements on tooth growth. The variables are: Length (tooth length in cm), Supplement (supplement type, either VC-ascorbic acid or OJ-orange juice), and Dose (in milligrams/day).
+
+
+##### a) 
+
+Read in Tooth Growth data (`ToothGrowth.csv`). Check the data carefully...
+
+```{r reading_in_tooth}
+
+
+```
+
+##### b) 
+
+How many variables and observations are in this dataset? What is each variable's type? 
+
+Note: This can be determined without code by using the RStudio Viewer. The functions `nrow()` and `ncol()` may also be useful for this question. 
+
+```{r explore}
+
+
+```
+
+
+##### c) 
+
+Calculate the mean and standard deviation of tooth length for each dosage and report them using in-line R code.
+
+```{r tooth_vectors}
+
+
+```
+
+
+##### d) 
+
+Make a boxplot for tooth length based on supplement. Comment on the distribution, and any observed differences you see between OJ and VC supplement groups.
+
+```{r tooth_box}
+
+
+
+```
+
+
+## Question 3 
+ 
+The Murders dataset contains information on murder rates in the US in 2012. The variables are: state, region, population (number of residents in the region), and total_murders (number of murders in the region).
+ 
+##### a) 
+
+The code below attempts to read in the murders dataset but requires additional options to read in the data correctly. Take a look at the data file and check the data carefully after you read it in... 
+ 
+```{r read_murder}
+
+
+```
+
+
+##### b) 
+
+How many variables and observations are in this dataset? What is each variable's type? 
+
+```{r murder_details}
+
+
+```
+
+
+
+##### c) 
+
+The following code creates a histogram of the total murders, yet contains four errors. Identify and correct each error, and describe what was wrong below the graph. Once you have fixed all errors, be sure to remove `eval = FALSE` from the code chunk options so that the code will run. 
+
+```{r murder_histo}
+
+# Wrong Code
+# ggplot(data = murder) %>% 
+#   geom_histogram(y = total_murders) + 
+#   labs(title = "Histogram of Murders", x = "cities")
+
+
+```
+
+##### d)
+
+The following code attempts to visualize total murders by population and region, with each region displayed in a different color -- but there are four errors. Find and correct each, and describe what was wrong below the graph. Once you have fixed all errors, be sure to remove `eval = FALSE` from the code chunk options. 
+
+```{r murder_map}
+
+# Wrong Code below
+# ggplot(data = murders) + 
+#   geom_scatter(aes(y = population, x = totalmurders), color = region) +  
+#   labs(title = "Murders by Population and Region", x = "population", y = "region")
+
+```

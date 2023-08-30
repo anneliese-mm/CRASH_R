@@ -1,0 +1,260 @@
+---
+title: "Practice 4"
+author:
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+```
+
+# Question 1
+
+### a) 
+
+Create a function that take a variable called `grade` which represents a score between 0 and 100 and outputs a letter grade. Here we define an `A` as 90 or above, `B` as 80 or above, `C` as 70 or above, `D` as 60 or above, and `F` as below 60. Test you function at least twice and show the results.
+
+```{r grade machine}
+
+```
+
+### b) 
+
+After a particularly rough semester, you are interested in finding the minimum grade you must receive on the final to pass class. The class points are broken down into 70% homework and 30% final exam.
+
+Create a function that takes arguments `homework` which represents your homework average for the semester (0-100) and `final` which represents your desired score on the final (0-100) and returns a statement saying either "PASS" or "FAIL" using a C as a cutoff for passing.
+
+```{r will i pass}
+    
+```
+
+### c) 
+
+Assuming you averaged a 70 on the homework, what is the minimum final grade you must receive to pass the class? Use your function to guess and check what the minimum final grade you need.
+```{r desperation}
+
+
+```
+
+# Question 2
+
+### a) 
+
+Create a function that takes argument `var` which represents a variable extracted from a tibble (a vector) and returns a 95% confidence interval for the sample mean of the variable only if the variable is numeric. Otherwise, notify the function user that the entry is non-numeric with a string that says "Input is non-numeric". The equation for a 95% confidence interval is below:
+
+$$\overline{x} \pm z*\frac{s}{\sqrt{n}}$$
+
+Where $\overline{x}$ is the mean, $z$ is the z-score, $s$ is the standard deviation, and $n$ is the number of observations.
+
+```{r CI Function}
+
+
+```
+
+### b) 
+
+Test this function on the supplement and length variables from the tooth growth dataset in `ToothGrowth.csv`.
+
+
+```{r test CI}
+
+```
+
+# Question 3 
+
+### a)
+
+Many datasets are created with missing values labeled as 999 or 9999. Create a function that takes in a value and if it is 999 or 9999 changes it to NA (integer). Test your function on x, y, and z created below.
+
+```{r}
+
+x = 999
+y = 65
+z = 9999
+
+```
+
+
+```{r}
+
+```
+
+
+### b) 
+
+Similarly, some datasets will label missing values with two asterisks. Adapt your function so if the input is a character variable it will change all double asterisk signs to NA, and for numeric variables it changes 999 and 9999 to NA. Now, test the function on w, x, y, and z as created below. Explain why it works as it does with each test.
+
+```{r incluse NA}
+
+w <- "999"
+x <- "char"
+y <- "**"
+z <- 88
+```
+
+
+```{r}
+
+
+```
+
+
+
+### c) 
+Lastly, to improve your function, ensure it returns appropriate error messages. If the object given is a data frame, rather than an atomic object, have it inform the user (use `is.data.frame()` to test for whether the object is a data frame). Test your updated function with the objects a, b, and c created below.
+
+```{r last q3}
+
+
+a <- 6 
+b <- "red"
+c <- tibble(color = c("red", "green", "blue", "**"), number = c(5, 10, 999, 12))
+
+
+```
+
+
+# Question 4 
+
+### a)
+
+A collaborator has given you four data sets to analyze (the code below reads in the data). Unfortunately, all four are messy and need cleaning. Rather than clean each individually, write a function which cleans the dataset given as needed. Specifically, your function should:
+
+(1) clean variable names (think of the `clean_names()` function)
+
+(2) remove the extra row
+
+(3) remove the notes variable
+
+(4) drop any rows with missing values (check out the `drop_na()` function)
+
+(5) remove entries with negative heights, lengths, or weights
+
+(6) convert the height, weight, and length variables to numeric
+
+(7) create a new variable called `new_var` which is the product of weight times height times length
+
+```{r}
+
+
+```
+
+
+### b)
+
+Combine all 4 resulting datasets (using `bind_rows`) and print the resulting data below using kable.
+
+```{r merging data frames}
+
+```
+
+# Question 5
+
+Your colleague has shared a dataset for a medium sized depression study. This study had two active treatments and a control group over 10 weeks. The main outcome of interest was the PHQ-9 sum score, which can range from 0-27. The data is stored in the `depression_study.csv` file. 
+
+### a)
+
+During a meeting with your colleague they sketch out a graph they would like you to make for an upcoming poster session. Your colleague does not know exactly what the data will look like, but has a general idea of the graph they want. The picture they sketched, along with some notes, is included below in the `graph-sketch.jpg` file. Take a look at it by clicking on it in the file explorer in the lower right hand section of RStudio. 
+
+Important things to notice:*
+(1) Your colleague is interested in mean PHQ-9 by treatment by day. 
+(2) Your colleague wants the x and y axis to have specific ranges, tick marks, and labels. 
+(3) Your colleague wants the colors of the three treatments to be different.
+(4) Your colleague wants the points that represent the three treatments to be different as well -- squares, circles, and triangles.
+(5) Your colleague wants the legend below the plot.
+
+Use what you have learned about data manipulation and plotting to try to create a plot that matches their sketch to the best of your ability. It's okay if it isn't perfect -- but try your best to match what it looks like they wanted. 
+
+```{r graph}
+
+
+```
+
+# Question 6 
+
+**********Wasn't Covered in CRASH COURSE**********
+
+In lecture and in this week's R videos we have talked about power and how to calculate and visualize it using simulations. 
+
+Imagine we are studying a certain biomarker whose mean in most populations is 126 units. This biomarker is normally distributed with a variance of 144 units. We have the opportunity to test a particular subpopulation of interest to see if they differ in this biomarker, and for our tests we have access to a sample size of 25 individuals. We expect that this population will have a mean biomarker level of 132 units.
+
+Follow the steps below to calculate the power we would have in this scenario.
+
+
+### a)
+
+Simulate 100,000 observations using the null hypothesis distribution using the `rnorm()` function.
+
+```{r sampling}
+
+```
+
+### b) 
+
+Determine the rejection region for a two-sided hypothesis test at a level of significance of 5%. 
+
+```{r finding limits}
+
+
+```
+
+### c)
+
+Create a new categorical variable `rejection_region` based on whether a null hypothesis simulated observation is inside of the rejection region. What proportion of simulated observations using the null hypothesis fall inside the rejection region? You should report this proportion using in-line R code. Give a precise number (up to 5 decimal places). Why is it not exactly 5%?
+
+```{r finding rejecion}
+
+```
+
+The proportion of observations in the null distribution that fall within the rejection
+region is `r round(proportion_rej$proportion[2], 5)`. It is not exactly 0.05 because this was created from a sample of a perfect normal distribution, and the sample itself only approximates a normal distribution. If we sampled more observations, the proportion of observations in the rejection region would get closer to 0.05. 
+
+### d) 
+
+Compute the  z-score for our alternative hypothesis, the case where the sub-population has a mean biomarker level of 132 units. You can find the formula for the z-score in this week's slides.
+
+```{r z score calc}
+
+```
+
+### e)
+
+Next, simulate 100,000 observations using the the alternative hypothesis using the `rnorm()` function.
+
+```{r}
+
+
+```
+
+### f)
+
+Create a new categorical variable `rejection_region` based on whether an alternative hypothesis simulated observation is inside of the rejection region. What proportion of simulated observations using the alternative hypothesis fall inside the rejection region (this is the definition of power)? You should report this proportion using in-line R code. Give a precise response (up to 5 decimal places). 
+
+```{r power calc}
+
+```
+
+
+### f)
+
+Combine your alternative hypothesis simulated data with null hypothesis data into one dataset using `bind_rows()`. Create a graph that displays the distributions under the null and alternative hypotheses that is just like the graph presented in lecture and the R videos.
+
+*Key components your graph must have:*
+(1) Custom colors for the rejection and non-rejection regions (you can choose your own if you like).
+(2) The graph must have facets for null hypothesis and alternative hypothesis observations. 
+(3) The x-axis, y-axis, and legend must be properly labeled.
+(4) Your graph needs to have two vertical dashed lines that mark the boundary between rejection and non-rejection regions. 
+
+```{r graphing power}
+
+
+```
+
+### g)
+
+Most studies aim to achieve 80% power. Does this scenario achieve that threshold of power? If it doesn't what is one feasible aspect of the study that you (might) be able to change to increase the power? (Hint: If you are not sure, look at the equation for calculating the z-score and think about which variable might be manipulable).
+

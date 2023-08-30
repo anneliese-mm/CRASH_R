@@ -1,0 +1,200 @@
+---
+title: "Practice 09"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+library(broom)
+library(gtsummary)
+```
+
+## Question 1
+
+### a)
+
+Download the latest US State-level COVID-19 dataset from the New York Times data portal from https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv. You should be able to use `read_csv()` to immediately download this data as long as you are connected to the internet.
+
+
+```{r}
+
+
+```
+
+### b)
+
+Calculate and report in a sentence the mean number of new COVID deaths reported in New York from January 1st, 2022 to now. In order to do this:
+
+(1) First filter the COVID State dataset to contain only information from New York
+(2) Next, arrange the observations according to date.
+(3) Create a new variable called `new_deaths` by using `mutate(new_deaths = deaths - lag(deaths))`. The `lag()` function will look backward one observation to obtain cases from the previous day.
+(4) Filter the data frame to only include dates from 01/01/22 onwards. This column should be in date format, so using >= logic will work.
+
+```{r}
+
+
+```
+
+### c)
+
+Compute and report the 95% confidence interval of the mean number of new deaths reported (using the standard formula for SE) in New York over from 01/01/22 onward.
+
+```{r}
+
+
+```
+
+### d)
+
+********THIS WAS NOT COVERED IN COURSE********
+
+Now compute and report the the 95% confidence interval of the mean number of new deaths reported (using bootstrapping to obtain the empirical 95% confidence interval) in New York over from 01/01/22 onward. Use 2000 bootstrap replicates to construct your confidence interval, and *include a histogram of the distribution of bootstrapped mean reported deaths.*
+
+```{r}
+
+
+```
+
+
+### e)
+
+Compare the confidence intervals in parts (c) and (d). Are they the same? Different? If they are different, which confidence interval is wider, and by how much?
+
+### f)
+
+Select five states of your choosing and create a line graph showing newly reported COVID-19 daily deaths from 01/01/21 onward, with states differentiated by color. Make at least *(3)* improvements to a basic ggplot (think about labeling, custom colors, themes, etc)
+
+```{r}
+
+
+
+```
+
+## Question 2
+
+You have received two raw datasets containing the exposure status and demographics for a small pilot study. The data is currently a bit messy, so your first goal is to clean it and produce a small table 1 describing the demographics between two groups.
+
+### a)
+
+Load the `pilot_exposure.csv` and `pilot_demo.csv` files into your environment. Figure out how to join them together so only participants with exposure information are included in the final file.
+
+```{r}
+
+
+```
+
+### b)
+
+You have been asked to clean up the demographic data and code variables into the following categories:
+
+**Gender**
+"Male" and "Female"
+(Current coding has 0 = Male and 1 = Female)
+
+**Ethnicity**
+"Hispanic" and "Non-Hispanic"
+
+**Race**
+"White", "Black", "Unknown"
+
+**Marital Status**
+"Single/Separated/Divorced" and "Married"
+
+Use string manipulation functions to create these variables and categories.
+
+```{r}
+
+
+```
+
+### c)
+
+Now that the variables have been cleaned, create a descriptive table of the entire sample using `tbl_summary()`.
+
+Make sure:
+
+(1) You include your cleaned gender, race, ethnicity, and marital status variables as well as age and education in years in your table.
+(2) Categorical variables are summarized using n(%) and continuous variables are summarized using mean(sd).
+(3) Each variable is labeled, not left with just a raw variable name.
+
+```{r}
+
+
+```
+
+### d)
+
+Now create a table with the same variables split by exposure group status. Include a column that shows the p-value for tests for differences between exposure groups for all variables. Make sure that the tests used for continuous variables are two-sample t-tests assuming equal variances.
+
+```{r}
+
+
+
+```
+
+
+## Question 3
+
+Last week you explored associations between skeletal/girth measures and obesity status. For this problem, we'll be returning to those models using the same `body_measures.csv` dataset.
+
+### a)
+
+**If you did not complete Q3 in HW08:** you must fit logistic regression models to explore the relationship between obesity status and three skeletal/girth measurements of your choice. This means you need to calculate BMI and create the 0/1 obesity outcome based on a BMI >= 30. You should result in 3 models, each one exploring the relationship between a measurement and obesity status. Your models can include adjustment for other variables if you wish.
+
+**If you completed Q3 in HW08:** you can cut/paste your code from that assignment to set up the data and re-fit your three obesity status models.
+
+
+```{r}
+
+
+```
+
+### b)
+
+One of your collaborators is very enthusiastic about reporting the BIC for each logistic regression model. This is a measure of overall model fit, with lower BIC indicating better fit. Use the `broom` package to access the BIC measure for each of your 3 logistic regression models and report them in a sentence using in-line coding.
+
+```{r}
+
+
+
+```
+
+### c)
+
+********THIS WAS NOT COVERED IN COURSE********
+
+
+Excited by the prospect of comparing models based on BIC, your colleague asks you to calculate the 95% CI for the BIC of each model. Unfortunately, you can't find a formula anywhere online to do this -- so you decide to bootstrap them using 1000 replicates. Show the simulated bootstrap distribution of BIC values for each model, and report the empirical 95% confidence interval for each model.
+
+```{r}
+
+
+```
+
+### d)
+
+Next up, you've been asked to produce a combined plot of the OR's and 95% CI for your measurements of interest and the BIC and bootstrapped 95% CI for each model in a "forest plot" type layout.
+
+To do this:
+(1) Create one plot of the OR's and 95% CI for your three measurements association with obesity.
+(2) Create a second plot of the BIC's and 95% CI for your three models.
+(3) Combine the two plots using `patchwork`.
+
+Make sure that:
+(1) Your two sub-plots have consistent themes.
+(2) Your axes are properly labeled, and the variables and models have clear descriptions (not raw variable names).
+(3) You indicate somehow that the 95% CI for BIC has been bootstrapped.
+
+```{r}
+
+
+```
+
+### e)
+
+Based on the 95% CI's in your graph in (e), would you say that the BIC for your three models differ? Why or why not?

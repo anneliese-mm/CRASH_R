@@ -1,0 +1,196 @@
+---
+title: 
+author: 
+date: 
+output:
+    html_document:
+        toc: 
+        toc_float: 
+
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE) # no need to change these options
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+## Question 0
+
+Add your name and the date to the R Markdown Header. 
+
+Insert a floating table of contents to the HTML. 
+
+## Question 1 
+
+This data was collected from www.theramenrater.com. It provides information on different reviews of ramen products, and has variables: Review #, Brand, Variety, Style, Country, Stars, and Top Ten. 
+
+#### (a)
+
+Read in the Ramen data and check it carefully. 
+
+```{r}
+
+```
+#### (b)
+
+Rename the first variable to be "review_number", and the last variable to be "top_ten". Additionally, ensure that the Stars column is saved as a numeric variable, and remove any non-numeric entries. 
+
+```{r}
+
+```
+
+
+#### (c)
+
+Filtering just for the the 'Nissin' ramen brand, calculate the average rating for each country of this brand. What country has the highest rating of Nissin ramen? What country has the lowest rating? 
+
+```{r filter summarize}
+
+
+```
+
+The country with the highest rating of Nissin is Brazil (4.35), while the country with the lowest rating of Nissin is Philippines (2.00).
+
+#### (d)
+
+Create a new variable called "popular" which returns a 1 for entries that have a rating above or equal to 4.5 stars, and 0 for those that don't. 
+
+```{r popularize}
+
+
+```
+
+#### (e)
+
+Calculate the average stars for popular and not popular bowl ramen. Explain why (or why not) your results are meaningful. 
+
+```{r}
+
+
+```
+
+
+## Question 2 
+
+#### (a)
+
+Read in NYC Airbnb data `AB_NYC_2019.csv`, and select only the: host_name, neighbourhood_group, room_type, price, minimum_nights, and number_of_reviews. Note, the neighborhood_group variable refers to borough. 
+
+```{r airbnb start}
+
+
+```
+
+#### (b)
+
+Create a new variable called minimum_price, which combines the minimum nights and price (per night) to give the minimum amount someone could pay to stay at the Airbnb. 
+
+```{r min price}
+
+```
+
+#### (c)
+
+Calculate the mean and median minimum_price using 'summarize'. From these results, estimate whether you expect the data to be left or right skewed? Confirm your hypothesis by creating a histogram. Note, to improve the visualization of your histogram, consider removing very high prices. 
+
+```{r}
+
+```
+
+
+#### (d)
+
+Are all of the New York City boroughs represented in the data? Prove your conclusion using the summarize function to show the number of observations in each borough.
+
+```{r borough check}
+
+
+```
+
+
+#### (e)
+
+Plot a boxplot of price across boroughs, showing only properties less than 1,000 a night. From the graph, which borough appears to have the highest median price? Which seems to have the lowest median price? Confirm this result using summarize and report the median price by borough. 
+
+```{r boxplot and summary}
+
+
+```
+
+#### (f)
+
+What is the most commonly occurring host name? Re-write the code below using pipes and then report the answer in a sentence.
+
+```{r common names}
+
+
+```
+
+
+## Question 3
+
+#### (a)
+
+You have been given a dataset for a study of a potential depression drug: `STUDYDAT12014.csv`. It includes treatment and placebo status, dose, age, along with HAM-D and HAM-A scores at baseline (`baseline_hamd` and `baseline_hama`) and at the end of the study (`outcome_hamd` and `outcome_hama`). Read in this dataset (`STUDYDAT12014.csv`) and report how many variables and how many observations are in this dataset.
+
+```{r reading in study}
+
+
+```
+
+
+#### (b)
+
+The investigators are interested in analyzing subjects who are at least 30 years old but less than 40 years old, so create a dataset which contains only observations from people within this age range. Use this dataset for all subsequent analyses.
+
+```{r thirties}
+
+
+```
+
+#### (c)
+The treatment groups are currently labeled `pbo` and `trx`, but the researchers would like to have them labeled `Placebo` and `Drug 13XA`. Please make these changes to the dataset you created in (b)  
+
+```{r placebo}
+
+
+```
+
+#### (d)
+
+Create two new variables `hamd_diff` and `hama_diff` that are changes between baseline and outcome measurements for HAM-A and HAM-D. 
+
+```{r changes}
+
+```
+
+#### (e)
+
+The investigators are interested in assessing whether there is a difference in (1) mean HAM-A changes between treatment groups and (2) mean HAM-D changes between treatment groups. Use t-tests (unequal variance) to test the difference between treatment groups for both of these outcomes. Be sure to report the test statistic, p-value, and degrees of freedom for each test in your write-up. 
+
+```{r}
+
+```
+
+
+## Question 4
+
+#### (a) 
+
+You have been provided with a dataset from a student-run cafe `cafedata.xls`. This dataset contains data from a cafe, called Executive Express, run by undergraduate business students at a Midwestern public university. It was collected over a ten-week period from January to April 2010.  Use what you have learned to read the data in, prepare it for analysis, and then calculate the necessary summary statistics to fill out the paragraph below, replacing the X's with appropriate results.
+
+```{r}
+
+
+```
+
+#### (b)
+
+Create a graph that displays the distribution of coffee sales by day. Make sure the graph has the days ordered properly, as we would expect to see them on a calendar. 
+
+```{r last graph}
+
+```
+

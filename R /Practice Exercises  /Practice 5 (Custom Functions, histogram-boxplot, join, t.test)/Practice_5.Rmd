@@ -1,0 +1,242 @@
+---
+title: "Assignment 5"
+author: 
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+```
+
+# Question 1
+
+### a)
+
+Write a function that returns the fifth element of a vector. If the vector has a length smaller than 5, return a string that says "The input vector is too small!".
+
+```{r size matters}
+
+
+```
+
+### b)
+
+Write a function that takes two arguments, `df` and `graph_type`. If `graph_type` equals "histogram", make a histogram; if graph_type equals "box plot" make a boxplot. The input `df` is a dataframe and the variable to graph will always be `obs`. Test your function by creating a histogram and a box plot of the dataset found in `data/distro_sim.csv`.
+
+```{r make graph}
+
+
+```
+
+### c)
+
+Improve the graphs from part (b) by altering their themes, colors, titles, labels, or axes. Make two improvements to each graph and then create a histogram and box plot of the `data/distro_sim.csv` dataset. Explain your improvements in sentences below your new graphs.
+
+```{r fancy graph}
+
+
+
+
+```
+
+# Question 2
+
+### a)
+
+The code below contains a function which calculates power. This function contains errors which prevent it from behaving correctly and needs debugging. Rename and debug this function so it works correctly.
+
+
+```{r}
+
+foofoo <- function(alt_mu, null_mu, s, n){  
+  alt_z <-(alt_mu - null_mu)/(s/sqrt(n))
+  alt_hypothesis <- rnorm(alt_z, 1, 10000)
+  alt_tibble <- tibble(obs = alt_hypothesis, scenario = "Alternative Hypothesis") %>%
+    mutate(region <- if_else(obs < - 1.96 & obs > 1.96, "rejection", "non-rejection"))
+
+  power_df <- alt_tibble %>%
+    group_by(region) +
+    summarize(n_total = n()) %>%
+    mutate(proportion = n_total/sum(alt_z))
+
+  power <- power_df %>%
+    filter(region == "rejection") %\%
+    pull(proportion) %>%
+    round(4)
+return(power)
+}
+
+```
+
+### b)
+
+Test the corrected function from (a) using the following inputs: alt_mu = 45, null_mu = 40, s = 4, n = 15. Report the power in a sentence.
+
+```{r testing scouter}
+
+
+```
+
+
+# Question 3
+
+You have received four separate datasets for a small study on the effectiveness of a new drug on depression and anxiety. The first dataset contains demographic data collected at admission and is saved as `data/study832_demos.csv`. The second dataset contains randomization information and is saved as `data/study832_randomization.csv`. The third dataset contains measurements of HAM-D and HAM-A at baseline and is saved as `data/study832_baseline.csv". The fourth dataset contains measurements of HAM-D and HAM-A at the end of the study and is saved as `data/study832_study_end.xlsx`.
+
+### a)
+
+Load all four datasets into your R environment. Take a look at each dataset and report the primary key (unique identifier) of each dataset.
+
+```{r loading in}
+
+
+```
+. 
+
+
+### b)
+
+Join the demographic and randomization data frames together. Use a join that will drop any individuals who were not randomized.
+
+```{r keep rando}
+
+
+```
+
+### c)
+
+Join the data frame from (b) with the baseline HAM-D and HAM-A dataset. Use a join that will drop any individuals who were not in the data frame from (b).
+
+```{r baseline randomized}
+
+
+```
+
+### d)
+
+Using the data frame from (c), join the outcome data from the `study832_study_end.xlsx` file and create new change score variables for change in HAM-D and change in HAM-A (the score at the end of the study minus the score at baseline). Use a join that will drop any individuals who were not in the data frame from (c). How many observations are missing values for HAM-A change and how many observations are missing values for HAM-D change?
+
+```{r merge follow}
+
+
+```
+
+### e)
+
+Create two boxplots: one which shows the distribution of HAM-A changes scores by treatment group, and one that shows HAM-D change scores by treatment group.
+
+```{r ham boxplots}
+
+
+```
+
+### f)
+
+Use t-tests (unequal variance) to test the difference between treatment groups for change in HAM-D scores and change in HAM-A scores. Be sure to report the test statistic, p-value, and degrees of freedom for each test in your write-up.
+
+```{r}
+
+
+
+```
+
+
+# Question 4
+
+********THIS WAS NOT COVERED IN THE COURSE********
+
+Let's show the Central Limit Theorem in action!
+
+It will be so much fun, it won't even feel like a homework problem!
+
+The CLT states that as we take more and more samples from ANY distribution, the distribution of the mean of these samples will approach a normal distribution.
+
+### a)
+
+Simulate two normal distributions and combine them into a tibble to create a bimodal distribution. To do this, create one tibble of 50,000 observations from a normal distribution with mean = 0 and sd = 1, and one tibble of 50,000 observations from a normal distribution with a mean between 5 and 10 and a standard deviation between 1 and 2 (you choose). Combine your simulated datasets using `bind_rows()`.
+
+
+```{r sample from rand}
+
+standard_normal <- rnorm(50000, mean = 0, sd = 1)
+standard_tibble <- tibble(obs = standard_normal)
+
+other_normal <- rnorm(50000, mean = 7, sd = 1.7)
+other_tibble <- tibble(obs = other_normal)
+
+bimod_tibble <- bind_rows(other_tibble, standard_tibble)
+
+ggplot(data = bimod_tibble) +
+    geom_histogram(aes(x = obs))
+
+```
+
+
+### b)
+
+Use the function below called `get_mean()` on the bimodal distribution you created -- it will randomly sample n observations from a dataframe that you pass into it and calculate their mean, which gets returned in a dataframe. Notice that it expects the variable "obs" to be present in the input dataframe. You can alter the function to use the name of the variable you assigned in your tibble from (a) or you can rename the variable name from (a) to get this function to work. Run the function 5 times to show that it is working.
+
+```{r finding means}
+
+get_mean <- function(input_df, n){
+  s <- sample_n(input_df, size = n, replace = FALSE) %>%
+    summarize(mean = mean(obs))
+    return(s)
+}
+
+get_mean(other_tibble, 21)
+get_mean(other_tibble, 6)
+get_mean(other_tibble, 30)
+get_mean(other_tibble, 3)
+get_mean(other_tibble, 12)
+
+
+```
+
+### c)
+
+Write a function called `make_histogram()` that takes a dataframe as input and outputs a histogram. Make sure it will work on the results of the `get_mean()` function above -- this means it should map the x aesthetic to the appropriate variable which represents the mean of the random sample you produce in the `get_mean()` function. Include an additional argument to your function that allows you to change the title of the histogram.  
+
+```{r make histogram}
+
+make_histogram <- function(df, t){
+  histogram_plot <- ggplot(data = df) +
+                geom_histogram(aes(x = mean), bins = 75) +
+                theme_stata() +
+                labs(title = t)
+  return(histogram_plot)
+}  
+
+```
+
+
+### d)
+
+Now, use the `map_dfr()` function to obtain 10000 means from your bimodal distribution with varied sample sizes. Start with 10000 means of 2 random samples, then try 10000 means of 5, 10, 20, and 30 random samples. Each time you obtain your 10000 means, use your `make_histogram()` function to plot the distribution of your means. Make sure you add a title to each histogram so that we can tell how many samples you have drawn to get these means.
+
+```{r making histograms}
+
+bimodal_means_2 <- map_dfr(1:10000, function(x) get_mean(other_tibble,2))
+make_histogram(bimodal_means_2, t = "Bimodal Distribution: Sample Size 2")
+
+bimodal_means_5 <- map_dfr(1:10000, function(x) get_mean(other_tibble, 5))
+make_histogram(bimodal_means_5, t = "Bimodal Distribution: Sample Size 5")
+
+bimodal_means_10 <- map_dfr(1:10000, function(x) get_mean(other_tibble, 10))
+make_histogram(bimodal_means_10, t = "Bimodal Distribution: Sample Size 10")                          
+
+bimodal_means_20 <- map_dfr(1:10000, function(x) get_mean(other_tibble, 20))
+make_histogram(bimodal_means_20, t = "Bimodal Distribution: Sample Size 20")
+
+bimodal_means_30 <- map_dfr(1:10000, function(x) get_mean(other_tibble, 30))
+make_histogram(bimodal_means_30, t = "Bimodal Distribution: Sample Size 30")
+```
+
+### e)
+
+Based on your results from part (d) above, does the Central Limit Theorem hold? How many samples did you need to use to obtain a distribution of means that approached the normal distribution?
+
+The central limit theorem holds in this case as the distribution of the sample means got closer to a normal distribution with every increase in the sample size. It would appear that at sample size 20, the distribution resembled a normal curve with one peak and small tails. 
