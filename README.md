@@ -1,5 +1,8 @@
 # CRASH_R
 Github version of Mikey Toledano's R Resources to start programming in R, original can be found at [here](https://drive.google.com/drive/folders/1ehWkZqhXtSw3Q_QDr0H5xKM6iPS03utX)
+
+Watch the video [here](https://www.youtube.com/watch?v=FmmKgi0IUfs&feature=youtu.be) to learn how to download Git and the repository
+
 # Lesson Documents
 All lesons have a directory (folder) in R\Lesson_Documents, with a corresponding video in html format. Double click the html file to open the video, using Youtube.
 # Practice Exercises
