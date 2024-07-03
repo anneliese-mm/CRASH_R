@@ -3,6 +3,11 @@ Github version of Mikey Toledano's R Resources to start programming in R, origin
 
 Watch the video [here](https://www.youtube.com/watch?v=FmmKgi0IUfs&feature=youtu.be) to learn how to download Git and the repository
 
+# Easy Download 
+To download the repo(folders + videos) without using git, click this
+<img width="422" alt="image" src="https://github.com/jsmbsCRASH/CRASH_R/assets/75629510/33b1d67e-375f-47dd-8acd-c2346001778b">
+
+
 # Lesson Documents
 All lesons have a directory (folder) in R\Lesson_Documents, with a corresponding video in html format. Double click the html file to open the video, using Youtube.
 # Practice Exercises
